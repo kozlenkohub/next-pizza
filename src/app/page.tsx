@@ -1,4 +1,4 @@
-import { Container, Title, TopBar, Filters, ProductCard } from '@/components/shared';
+import { Container, Title, TopBar, Filters } from '@/components/shared';
 import { ProductsGroupList } from '@/components/shared/products-group-list';
 
 export default function Home() {
@@ -26,35 +26,35 @@ export default function Home() {
                     items: [{ price: 10.99 }],
                   },
                   {
-                    id: 1,
+                    id: 2,
                     name: 'Margherita',
                     imageUrl:
                       'https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg',
                     items: [{ price: 10.99 }],
                   },
                   {
-                    id: 1,
+                    id: 3,
                     name: 'Margherita',
                     imageUrl:
                       'https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg',
                     items: [{ price: 10.99 }],
                   },
                   {
-                    id: 1,
+                    id: 4,
                     name: 'Margherita',
                     imageUrl:
                       'https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg',
                     items: [{ price: 10.99 }],
                   },
                   {
-                    id: 1,
+                    id: 5,
                     name: 'Margherita',
                     imageUrl:
                       'https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg',
                     items: [{ price: 10.99 }],
                   },
                   {
-                    id: 1,
+                    id: 6,
                     name: 'Margherita',
                     imageUrl:
                       'https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg',
@@ -62,6 +62,54 @@ export default function Home() {
                   },
                 ]}
                 categoryId={1}
+              />
+              <ProductsGroupList
+                title="Combo"
+                items={[
+                  {
+                    id: 1,
+                    name: 'Margherita',
+                    imageUrl:
+                      'https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg',
+                    items: [{ price: 10.99 }],
+                  },
+                  {
+                    id: 2,
+                    name: 'Margherita',
+                    imageUrl:
+                      'https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg',
+                    items: [{ price: 10.99 }],
+                  },
+                  {
+                    id: 3,
+                    name: 'Margherita',
+                    imageUrl:
+                      'https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg',
+                    items: [{ price: 10.99 }],
+                  },
+                  {
+                    id: 4,
+                    name: 'Margherita',
+                    imageUrl:
+                      'https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg',
+                    items: [{ price: 10.99 }],
+                  },
+                  {
+                    id: 5,
+                    name: 'Margherita',
+                    imageUrl:
+                      'https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg',
+                    items: [{ price: 10.99 }],
+                  },
+                  {
+                    id: 6,
+                    name: 'Margherita',
+                    imageUrl:
+                      'https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg',
+                    items: [{ price: 10.99 }],
+                  },
+                ]}
+                categoryId={2}
               />
             </div>
           </div>
