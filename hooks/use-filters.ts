@@ -1,72 +1,25 @@
-import { useSearchParams } from 'next/navigation';
-import { useSet } from 'react-use';
-import React from 'react';
+import { useState } from "react";
+import { useSet } from "react-use";
+import { useSearchParams } from "next/navigation";
 
 interface PriceProps {
-  priceFrom?: number;
-  priceTo?: number;
+  priceFrom: number;
+  priceTo: number;
 }
 
-interface QueryFilters extends PriceProps {
-  pizzaTypes: string;
-  sizes: string;
-  ingredients: string;
-}
+export const useFilters = () => {
 
-export interface Filters {
-  sizes: Set<string>;
-  pizzaTypes: Set<string>;
-  selectedIngredients: Set<string>;
-  prices: PriceProps;
-}
+  const searchParams = useSearchParams()
 
-interface ReturnProps extends Filters {
-  setPrices: (name: keyof PriceProps, value: number) => void;
-  setPizzaTypes: (value: string) => void;
-  setSizes: (value: string) => void;
-  setSelectedIngredients: (value: string) => void;
-}
+  const [sizes, { toggle: toggleSizes }] = useSet(searchParams.get('sizes')  ? new Set(searchParams.get('sizes')?.split(',')) : new Set([]));  //searchParams.get('sizes')?.split(',')
+  
+  const [pizzaTypes, { toggle: toggleTypes }] = useSet(searchParams.get('pizzaTypes')  ? new Set(searchParams.get('pizzaTypes')?.split(',')) : new Set([]));
 
-export const useFilters = (): ReturnProps => {
-  const searchParams = useSearchParams() as unknown as Map<keyof QueryFilters, string>;
-
-  const [selectedIngredients, { toggle: toggleIngredients }] = useSet(
-    new Set<string>(searchParams.get('ingredients')?.split(',')),
-  );
-
-  const [sizes, { toggle: toggleSizes }] = useSet(
-    new Set<string>(searchParams.has('sizes') ? searchParams.get('sizes')?.split(',') : []),
-  );
-
-  const [pizzaTypes, { toggle: togglePizzaTypes }] = useSet(
-    new Set<string>(
-      searchParams.has('pizzaTypes') ? searchParams.get('pizzaTypes')?.split(',') : [],
-    ),
-  );
-
-  const [prices, setPrices] = React.useState<PriceProps>({
-    priceFrom: Number(searchParams.get('priceFrom')) || undefined,
-    priceTo: Number(searchParams.get('priceTo')) || undefined,
+  
+  const [price, setPrice] = useState<PriceProps>({
+    priceFrom: Number(searchParams.get('priceFrom')) || 0,
+    priceTo: Number(searchParams.get('priceTo')) || 1000,
   });
 
-  const updatePrice = (name: keyof PriceProps, value: number) => {
-    setPrices((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  return React.useMemo(
-    () => ({
-      sizes,
-      pizzaTypes,
-      selectedIngredients,
-      prices,
-      setPrices: updatePrice,
-      setPizzaTypes: togglePizzaTypes,
-      setSizes: toggleSizes,
-      setSelectedIngredients: toggleIngredients,
-    }),
-    [sizes, pizzaTypes, selectedIngredients, prices],
-  );
+  return {sizes, pizzaTypes, toggleSizes, toggleTypes, price, setPrice }
 };
