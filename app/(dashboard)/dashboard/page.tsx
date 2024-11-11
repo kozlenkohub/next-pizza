@@ -1,4 +1,11 @@
+import { NextPage } from "next"
 
-export default function Dashboard() {
-    return <div>Dashboard</div>
+const DashboardPage: NextPage = () => {
+  return (
+    <div>
+      DashboardPage
+    </div>
+  )
 }
+
+export default DashboardPage;

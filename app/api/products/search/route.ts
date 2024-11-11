@@ -1,19 +1,23 @@
-import { prisma } from "@/prisma/prisma-client";
+import prisma from "@/db";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
-    
-    const param = req.nextUrl.searchParams.get('query') || ''
-
+  try {
+    const url = new URL(req.url);
+    const queryParams = Object.fromEntries(url.searchParams.entries());
+    const whereCondition = Object.fromEntries(
+      Object.entries(queryParams).map(([key, value]) => [
+        key,
+        { contains: value, mode: 'insensitive' }
+      ])
+    );
     const products = await prisma.product.findMany({
-        where: {
-            name: {
-                contains: param,
-                mode: 'insensitive',
-            },
-        },
-        take: 5,
+      where: whereCondition
     })
 
-    return NextResponse.json(products)
+    return NextResponse.json(products);
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    return NextResponse.json({ error: "Failed to fetch products" }, { status: 500 });
+  }
 }

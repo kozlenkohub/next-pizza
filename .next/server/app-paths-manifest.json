@@ -1,0 +1,7 @@
+{
+  "/api/cart/route": "app/api/cart/route.js",
+  "/api/ingredients/search/route": "app/api/ingredients/search/route.js",
+  "/api/products/search/route": "app/api/products/search/route.js",
+  "/(root)/page": "app/(root)/page.js",
+  "/(root)/@modal/(.)product/[id]/page": "app/(root)/@modal/(.)product/[id]/page.js"
+}

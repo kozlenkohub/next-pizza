@@ -1,14 +1,27 @@
-import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
+import localFont from "next/font/local";
+import { Nunito } from "next/font/google"
 import "./globals.css";
+import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/toaster";
+
+const geistSans = localFont({
+  src: "./fonts/GeistVF.woff",
+  variable: "--font-geist-sans",
+  weight: "100 900",
+});
+const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff",
+  variable: "--font-geist-mono",
+  weight: "100 900",
+});
 
 const nunito = Nunito({
   subsets: ["cyrillic"],
   variable: "--font-nunito",
-  weight: ["400", "500", "600", "700", "800", "900"],
-});
+  weight: ["400", "500", "600", "700", "800", "900"]
+})
 
-export default function RootLayout({
+export default function MainLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -16,9 +29,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link data-rh="true" rel="icon" href="/logo.png" />
+        <link
+          rel="icon"
+          href="/logo.png"
+        />
       </head>
-      <body className={nunito.className}>{children}</body>
+      <body
+        className={cn(
+          `${geistSans.variable} ${geistMono.variable} antialiased`,
+          nunito.className
+        )}
+      >
+        <Toaster />
+        {children}
+      </body>
     </html>
   );
 }
